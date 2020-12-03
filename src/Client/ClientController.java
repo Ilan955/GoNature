@@ -74,7 +74,7 @@ public class ClientController implements goIF
    */
   public void display(String message) 
   {
-    System.out.println("> " + message);
+    System.out.println(message);
   }
 }
 //End of ConsoleChat class

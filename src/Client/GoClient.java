@@ -60,12 +60,20 @@ public class GoClient extends AbstractClient {
 		awaitResponse = false;
 		String st;
 		st = msg.toString();
-		String[] result = st.split("\\s");
-		s1.setFirstName(result[0]);
-		s1.setLastName(result[1]);
-		s1.setID(result[2]);
-		s1.setEmail(result[3]);
-		s1.setPhoneNum(result[4]);
+		String[] result = st.split(" ");
+		  
+		  if(result[0].equals("null"))
+			  ClientUI.aFrame.GetRepondId(null);
+		  else if(result.length==3)
+			  ClientUI.aFrame.displayConnection(result);
+		  else
+			  ClientUI.aFrame.GetRepondId(result); 
+//		String[] result = st.split("\\s");
+//		s1.setFirstName(result[0]);
+//		s1.setLastName(result[1]);
+//		s1.setID(result[2]);
+//		s1.setEmail(result[3]);
+//		s1.setPhoneNum(result[4]);
 
 	}
 
@@ -89,9 +97,11 @@ public class GoClient extends AbstractClient {
 				}
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			
+			ClientUI.aFrame.thePortIsLBL.setText("No connection");
+			ClientUI.aFrame.thePortIsLBL.setVisible(true);
 			clientUI.display("Could not send message to server: Terminating client." + e);
-			quit();
+			
 		}
 	}
 

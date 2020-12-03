@@ -8,11 +8,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 public class PortController {
 	    @FXML
 	    private TextField portNum;
+	    @FXML
+	    private Button SubButton;
 	    
 	    private String getport() {
 			return portNum.getText();			
@@ -29,6 +32,7 @@ public class PortController {
 			else
 			{
 				((Node)event.getSource()).getScene().getWindow().hide(); //hiding primary window
+				
 				Stage primaryStage = new Stage();
 				FXMLLoader loader = new FXMLLoader();
 				ServerUI.runServer(p);
@@ -37,8 +41,9 @@ public class PortController {
 	    }
 	    public void start(Stage primaryStage) throws Exception {	
 			Parent root = FXMLLoader.load(getClass().getResource("loginPort1.fxml"));
-					
+			
 			Scene scene = new Scene(root);
+			scene.getStylesheets().add(getClass().getResource("loginPort.css").toExternalForm());
 			primaryStage.setTitle("Port");
 			primaryStage.setScene(scene);
 			primaryStage.show();		
