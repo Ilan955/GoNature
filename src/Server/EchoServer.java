@@ -66,17 +66,20 @@ public class EchoServer extends AbstractServer {
 	 * @param
 	 */
 	public void handleMessageFromClient(Object msg, ConnectionToClient client) {
-//      will decrypte what type of action the server need to do
-//      using switch case to simplify the actions the server will make
-//      every time the first place in the string array will tell what type of method to triger.
-		
+/*
+ *       
+ *       will decrypte what type of action the server need to do
+ *       using switch case to simplify the actions the server will make
+ *    	every time the first place in the string array will tell what type of method to triger.
+ *     
+ */
+      
 		
 		int flag=0;
 		String st = (String)msg;
 		String[] user = null;
 		String action =getAction(st);
 		String[] result= DecrypteMassege(st);
-		System.out.println(action);
 		switch (action) {
 		
 		case "submitVisitor":
@@ -87,7 +90,6 @@ public class EchoServer extends AbstractServer {
 		         sb.append(" ");
 		      }
 		      String str = sb.toString();
-		      System.out.println(str);
 		      this.sendToAllClients(str);
 			break;
 		case "updateVisitor":
@@ -100,7 +102,6 @@ public class EchoServer extends AbstractServer {
 			         sb1.append(" ");
 			      }
 			      String str2 = sb1.toString();
-			      System.out.println(str2);
 			      this.sendToAllClients(str2);
 			}
 			break;	
@@ -124,7 +125,12 @@ public class EchoServer extends AbstractServer {
 		
 	}
 	
-	
+/*
+ * This method will return the information about the id got
+ * Return a string array containing all the informations.
+ * 
+ * 	
+ */
 public String[] CheckForId(String msg) {
 	Statement stm;
 	String[] s = new String[5];
@@ -144,8 +150,7 @@ public String[] CheckForId(String msg) {
 			 s[4]=rs.getString(5);
 			
 		} 
-		for(int i =0;i<5;i++)
-			System.out.println(s[i]+"\n");
+		
 		
 		
 		
@@ -168,7 +173,13 @@ public String getAction(String msg) {
 	return result[0];
 }
 
-
+/*
+ * 
+ * This method will get a string with the email and the id to be changed
+ * will return true or false
+ * 
+ * 
+ */
 public boolean updateEmail(String[] msg) {
 	Statement stm;
 	try {

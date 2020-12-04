@@ -68,12 +68,7 @@ public class GoClient extends AbstractClient {
 			  ClientUI.aFrame.displayConnection(result);
 		  else
 			  ClientUI.aFrame.GetRepondId(result); 
-//		String[] result = st.split("\\s");
-//		s1.setFirstName(result[0]);
-//		s1.setLastName(result[1]);
-//		s1.setID(result[2]);
-//		s1.setEmail(result[3]);
-//		s1.setPhoneNum(result[4]);
+
 
 	}
 
