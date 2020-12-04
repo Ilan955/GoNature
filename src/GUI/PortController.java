@@ -47,7 +47,7 @@ public class PortController {
 			Scene scene = new Scene(root);
 			primaryStage.getIcons().add(icon);
 			scene.getStylesheets().add(getClass().getResource("loginPort.css").toExternalForm());
-			primaryStage.setTitle("Port");
+			primaryStage.setTitle("Connectionn");
 			primaryStage.setScene(scene);
 			primaryStage.show();		
 		}
