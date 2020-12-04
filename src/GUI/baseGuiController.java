@@ -70,14 +70,19 @@ public boolean waitresponse = false;
 		primaryStage.getIcons().add(icon);
 		Scene scene = new Scene(root);
 		scene.getStylesheets().add(getClass().getResource("baseGui.css").toExternalForm());
-		primaryStage.setTitle("Prototyp");
+		primaryStage.setTitle("Prototype");
 		primaryStage.setScene(scene);
 		
 		primaryStage.show();
 		
 		
 	}
-
+/*
+ * This method will return the host and the ip.
+ * If there is no connection there will be printed a "no connection error"
+ * 
+ * 
+ */
 	@FXML
 	void connectivity(ActionEvent event) {
 		String s = "connectivity";
@@ -175,50 +180,3 @@ public boolean waitresponse = false;
 
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//	public void Send(ActionEvent event) throws Exception {
-//		String id;
-//		FXMLLoader loader = new FXMLLoader();
-//
-//		id = getID();
-//		if (id.trim().isEmpty()) {
-//
-//			System.out.println("You must enter an id number");
-//		} else {
-//			ClientUI.chat.accept(id);
-//
-//			if (ChatClient.s1.getId().equals("Error")) {
-//				System.out.println("Student ID Not Found");
-//
-//			} else {
-//				System.out.println("Student ID Found");
-//				((Node) event.getSource()).getScene().getWindow().hide(); // hiding primary window
-//				Stage primaryStage = new Stage();
-//				Pane root = loader.load(getClass().getResource("/gui/StudentForm.fxml").openStream());
-//				StudentFormController studentFormController = loader.getController();
-//				studentFormController.loadStudent(ChatClient.s1);
-//
-//				Scene scene = new Scene(root);
-//				scene.getStylesheets().add(getClass().getResource("/gui/StudentForm.css").toExternalForm());
-//				primaryStage.setTitle("Student Managment Tool");
-//
-//				primaryStage.setScene(scene);
-//				primaryStage.show();
-//			}
-//		}
-//	}
-//
-//	public void getExitBtn(ActionEvent event) throws Exception {
-//		System.out.println("exit Academic Tool");
-//	}
-//
-//	public void loadStudent(Student s1) {
-//		this.sfc.loadStudent(s1);
-//	}
-//
-//	public void display(String message) {
-//		System.out.println("message");
-//
-//	}
-//
-//}

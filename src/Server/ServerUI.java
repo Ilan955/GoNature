@@ -19,7 +19,6 @@ public class ServerUI extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		// TODO Auto-generated method stub				  		
-		System.out.println("HELLO");
 		PortController pc = new PortController();
 		// TODO Auto-generated method stub
 
