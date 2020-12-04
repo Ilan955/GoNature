@@ -19,6 +19,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import logic.*;
@@ -65,6 +66,8 @@ public boolean waitresponse = false;
 	public void start(Stage primaryStage) throws Exception {
 		
 		Parent root = FXMLLoader.load(getClass().getResource("baseGUI.fxml"));
+		Image icon = new Image(getClass().getResourceAsStream("titleIcon.png"));
+		primaryStage.getIcons().add(icon);
 		Scene scene = new Scene(root);
 		scene.getStylesheets().add(getClass().getResource("baseGui.css").toExternalForm());
 		primaryStage.setTitle("Prototype");
