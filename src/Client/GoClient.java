@@ -66,6 +66,7 @@ public class GoClient extends AbstractClient {
 			  ClientUI.aFrame.GetRepondId(null);
 		  else if(result.length==3)
 			  ClientUI.aFrame.displayConnection(result);
+		  
 		  else
 			  ClientUI.aFrame.GetRepondId(result); 
 
@@ -83,7 +84,10 @@ public class GoClient extends AbstractClient {
 			openConnection();// in order to send more than one message
 			awaitResponse = true;
 			sendToServer(message);
+			if(message.equals("exit"))
+				quit();
 			// wait for response
+			else
 			while (awaitResponse) {
 				try {
 					Thread.sleep(100);
@@ -91,12 +95,22 @@ public class GoClient extends AbstractClient {
 					e.printStackTrace();
 				}
 			}
+			/*
+			 * 
+			 * There may be an exception trhown because there is no connection to the server 
+			 * This can happen if clicking conectivity when there is no connection
+			 * This can happen when click exit whene there is no connecton to the server
+			 * This can happen when trying to submit data to the server when there is no connection to the server
+			 * 
+			 * 
+			 */
 		} catch (IOException e) {
-			
-			ClientUI.aFrame.thePortIsLBL.setText("No connection");
-			ClientUI.aFrame.thePortIsLBL.setVisible(true);
-			clientUI.display("Could not send message to server: Terminating client." + e);
-			
+			if(!(message.equals("exit"))) {
+				ClientUI.aFrame.thePortIsLBL.setText("No connection");
+				ClientUI.aFrame.thePortIsLBL.setVisible(true);
+				clientUI.display("Could not send message to server: Terminating client." + e);
+				
+			}	
 		}
 	}
 
