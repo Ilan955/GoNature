@@ -10,13 +10,13 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.baseGuiController">
    <children>
-      <AnchorPane layoutX="5.0" layoutY="5.0" prefHeight="496.0" prefWidth="700.0">
+      <AnchorPane layoutX="5.0" layoutY="5.0" prefHeight="567.0" prefWidth="702.0">
          <children>
             <Button fx:id="SubButton" layoutX="365.0" layoutY="13.0" mnemonicParsing="false" onAction="#submitVisitor" text="Submit" textFill="#4e6805">
                <font>
                   <Font name="System Bold Italic" size="15.0" />
                </font></Button>
-            <Button fx:id="connectivity" layoutX="571.0" layoutY="441.0" mnemonicParsing="false" onAction="#connectivity" text="Connectivity">
+            <Button fx:id="connectivity" layoutX="569.0" layoutY="515.0" mnemonicParsing="false" onAction="#connectivity" text="Connectivity">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font></Button>
@@ -36,11 +36,11 @@
             <TextField fx:id="phoneDISP" layoutX="146.0" layoutY="218.0" />
             <TextField fx:id="lastDISP" layoutX="146.0" layoutY="124.0" />
             <TextField fx:id="emailDISP" layoutX="146.0" layoutY="165.0" />
-            <Label fx:id="thePortIsLBL" layoutX="430.0" layoutY="390.0" prefHeight="21.0" prefWidth="149.0" text="&quot;connected&quot;" visible="false">
+            <Label fx:id="thePortIsLBL" layoutX="430.0" layoutY="450.0" prefHeight="21.0" prefWidth="149.0" text="&quot;connected&quot;" visible="false">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font></Label>
-            <Label fx:id="theIPISLBL" layoutX="430.0" layoutY="423.0" prefHeight="21.0" prefWidth="149.0">
+            <Label fx:id="theIPISLBL" layoutX="430.0" layoutY="480.0" prefHeight="21.0" prefWidth="149.0">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font></Label>
@@ -57,6 +57,7 @@
                   <Font size="29.0" />
                </font>
             </Label>
+            <Button fx:id="ExitBtn" layoutX="21.0" layoutY="515.0" mnemonicParsing="false" onAction="#WhenClickExitBtn" prefHeight="31.0" prefWidth="109.0" text="Exit" />
          </children>
       </AnchorPane>
    </children>

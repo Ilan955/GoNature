@@ -113,7 +113,9 @@ public class EchoServer extends AbstractServer {
 			String s = sb2.toString();
 			this.sendToAllClients(s);
 			break;
-			
+		case "exit":
+			serverStopped();
+			break;
 		default:	
 			System.out.println("Sorry, don't know what you pressed");
 		
@@ -230,9 +232,15 @@ public boolean updateEmail(String[] msg) {
 	/**
 	 * This method overrides the one in the superclass. Called when the server stops
 	 * listening for connections.
+	 * @throws IOException 
 	 */
 	protected void serverStopped() {
 		System.out.println("Server has stopped listening for connections.");
+		try{
+			close();
+			System.exit(0);
+		}catch(IOException e) {System.out.println("The server is closed now");}
+		
 	}
 }
 //End of EchoServer class

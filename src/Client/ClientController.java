@@ -63,7 +63,9 @@ public class ClientController implements goIF
    */
   public void accept(String str) 
   {
+	  
 	  client.handleMessageFromClientUI(str);
+	  
   }
   
   /**

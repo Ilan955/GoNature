@@ -62,6 +62,8 @@ public boolean waitresponse = false;
 
 	 @FXML
 	   private Label theIPISLBL=null;
+	  @FXML
+	    private Button ExitBtn;
 
 	public void start(Stage primaryStage) throws Exception {
 		
@@ -177,6 +179,14 @@ public boolean waitresponse = false;
 		
 	
 	}
+	  @FXML
+	    void WhenClickExitBtn(ActionEvent event) {
+		 
+		  Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+		  stage.hide();
+		  String s= "exit";
+		  ClientUI.chat.accept(s);
+	    }
 
 }
 
