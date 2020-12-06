@@ -4,6 +4,7 @@
 package Server;
 
 import java.io.*;
+import SqlConnector.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -41,6 +42,7 @@ import java.util.Scanner;
 public class EchoServer extends AbstractServer {
 	final public static int DEFAULT_PORT = 5555;
 	private Connection conn;
+	sqlConnector sq;
 
 	// Constructors ****************************************************
 
@@ -83,7 +85,7 @@ public class EchoServer extends AbstractServer {
 		switch (action) {
 		
 		case "submitVisitor":
-			user = CheckForId(result[0]);
+			user = sq.CheckForId(result[0]);
 			StringBuffer sb = new StringBuffer();
 		    for(int i = 0; i < user.length; i++) {
 		         sb.append(user[i]);
@@ -94,8 +96,8 @@ public class EchoServer extends AbstractServer {
 			break;
 		case "updateVisitor":
 			
-			if(updateEmail(result)) {
-				user = CheckForId(result[0]);
+			if(sq.updateEmail(result)) {
+				user = sq.CheckForId(result[0]);
 				StringBuffer sb1 = new StringBuffer();
 			    for(int i = 0; i < user.length; i++) {
 			         sb1.append(user[i]);
@@ -119,12 +121,7 @@ public class EchoServer extends AbstractServer {
 		default:	
 			System.out.println("Sorry, don't know what you pressed");
 		
-		}
-		
-			
-		
-		
-		
+		}	
 	}
 	
 /*
@@ -133,69 +130,26 @@ public class EchoServer extends AbstractServer {
  * 
  * 	
  */
-public String[] CheckForId(String msg) {
-	Statement stm;
-	String[] s = new String[5];
-	try {
-		PreparedStatement ps = conn.prepareStatement("SELECT * FROM project.visitors WHERE ID=?");
-		stm = conn.createStatement();
-		ps.setString(1, msg);
-		ResultSet rs = ps.executeQuery();
-		
-		while(rs.next())
- 		{
-			 
-			 s[0]=rs.getString(1);
-			 s[1]=rs.getString(2);
-			 s[2]=rs.getString(3);
-			 s[3]=rs.getString(4);
-			 s[4]=rs.getString(5);
-			
-		} 
-		
-		
-		
-		
-	}catch(SQLException e) {e.printStackTrace();}
-	return s;
-}
 
-public String[] DecrypteMassege(String msg) {
-	String[] gotFromClient = msg.split(" ");
-	String[] res= new String[gotFromClient.length-1];
-    for(int i = 1; i <gotFromClient.length; i++) {
-       res[i-1]=gotFromClient[i];
-    }
-    return res;
-    
-}
+	public String[] DecrypteMassege(String msg) {
+		String[] gotFromClient = msg.split(" ");
+		String[] res= new String[gotFromClient.length-1];
+	    for(int i = 1; i <gotFromClient.length; i++) {
+	       res[i-1]=gotFromClient[i];
+	    }
+	    return res;
+	    
+	}
+	
+	public String getAction(String msg) {
+		String[] result = msg.split(" ");
+		return result[0];
+	}
+	
 
-public String getAction(String msg) {
-	String[] result = msg.split(" ");
-	return result[0];
-}
 
-/*
- * 
- * This method will get a string with the email and the id to be changed
- * will return true or false
- * 
- * 
- */
-public boolean updateEmail(String[] msg) {
-	Statement stm;
-	try {
-		PreparedStatement ps = conn.prepareStatement("UPDATE project.visitors SET email=? WHERE ID=?");
-		ps.setString(1, msg[1]);
-		ps.setString(2, msg[0]);
-		ps.executeUpdate();
-		return true;
-	}catch (SQLException e) {e.printStackTrace();
-								return false;}
-	
-	
-	
-}
+
+
 
 
 
@@ -204,6 +158,7 @@ public boolean updateEmail(String[] msg) {
 	 * starts listening for connections.
 	 */
 	protected void serverStarted() {
+		
 		System.out.println("Server listening for connections on port " + getPort());
 		
 		
@@ -220,6 +175,7 @@ public boolean updateEmail(String[] msg) {
         {
              conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/project?serverTimezone=IST","root","");
             System.out.println("Successfuly loged-in");
+            sq = new sqlConnector(conn);
 
 	}catch (SQLException ex) 
  	    {/* handle any errors*/
