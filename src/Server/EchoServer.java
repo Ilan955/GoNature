@@ -205,7 +205,7 @@ public boolean updateEmail(String[] msg) {
         
         try 
         {
-             conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/project?serverTimezone=IST","root","");
+             conn = DriverManager.getConnection("jdbc:mysql://localhost/project?serverTimezone=IST","root","root");
             System.out.println("Successfuly loged-in");
 
 	}catch (SQLException ex) 

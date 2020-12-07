@@ -67,7 +67,7 @@ public boolean waitresponse = false;
 		Parent root = FXMLLoader.load(getClass().getResource("baseGUI.fxml"));
 		Scene scene = new Scene(root);
 		scene.getStylesheets().add(getClass().getResource("baseGui.css").toExternalForm());
-		primaryStage.setTitle("Prototype");
+		primaryStage.setTitle("Prototypee");
 		primaryStage.setScene(scene);
 		
 		primaryStage.show();
