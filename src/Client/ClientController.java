@@ -49,7 +49,7 @@ public class ClientController implements goIF
     } 
     catch(IOException exception) 
     {
-      System.out.println("Error: Can't setup connection!"+ " Terminating client.");
+      System.out.println("Error: Can'tt setup connection!"+ " Terminating client.");
       System.exit(1);
     }
   }

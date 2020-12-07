@@ -82,46 +82,51 @@ public class EchoServer extends AbstractServer {
 		String[] user = null;
 		String action =getAction(st);
 		String[] result= DecrypteMassege(st);
-		switch (action) {
-		
-		case "submitVisitor":
-			user = sq.CheckForId(result[0]);
-			StringBuffer sb = new StringBuffer();
-		    for(int i = 0; i < user.length; i++) {
-		         sb.append(user[i]);
-		         sb.append(" ");
-		      }
-		      String str = sb.toString();
-		      this.sendToAllClients(str);
-			break;
-		case "updateVisitor":
+		try {
+			switch (action) {
 			
-			if(sq.updateEmail(result)) {
+			case "submitVisitor":
 				user = sq.CheckForId(result[0]);
-				StringBuffer sb1 = new StringBuffer();
+				StringBuffer sb = new StringBuffer();
 			    for(int i = 0; i < user.length; i++) {
-			         sb1.append(user[i]);
-			         sb1.append(" ");
+			         sb.append(user[i]);
+			         sb.append(" ");
 			      }
-			      String str2 = sb1.toString();
-			      this.sendToAllClients(str2);
-			}
-			break;	
-		case "connectivity":
-			StringBuffer sb2 = new StringBuffer();
-			sb2.append(getPort());
-			sb2.append(" ");
-			sb2.append(client);
-			String s = sb2.toString();
-			this.sendToAllClients(s);
-			break;
-		case "exit":
-			serverStopped();
-			break;
-		default:	
-			System.out.println("Sorry, don't know what you pressed");
+			      String str = sb.toString();
+			      client.sendToClient(str);
+				break;
+			case "updateVisitor":
+				
+				if(sq.updateEmail(result)) {
+					user = sq.CheckForId(result[0]);
+					StringBuffer sb1 = new StringBuffer();
+				    for(int i = 0; i < user.length; i++) {
+				         sb1.append(user[i]);
+				         sb1.append(" ");
+				      }
+				      String str2 = sb1.toString();
+				      client.sendToClient(str2);
+				}
+				break;	
+			case "connectivity":
+				StringBuffer sb2 = new StringBuffer();
+				sb2.append(getPort());
+				sb2.append(" ");
+				sb2.append(client);
+				String s = sb2.toString();
+				 client.sendToClient(s);
+				break;
+			case "exit":
+				serverStopped();
+				break;
+			default:	
+				System.out.println("Sorry, don't know what you pressedsNow");
+			
+			}	
+		} catch(Exception e) {
+			System.out.println("Erro");
+		}
 		
-		}	
 	}
 	
 /*
@@ -146,13 +151,6 @@ public class EchoServer extends AbstractServer {
 		return result[0];
 	}
 	
-
-
-
-
-
-
-
 	/**
 	 * This method overrides the one in the superclass. Called when the server
 	 * starts listening for connections.
