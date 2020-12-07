@@ -124,7 +124,7 @@ public class EchoServer extends AbstractServer {
 			
 			}	
 		} catch(Exception e) {
-			System.out.println("Erro");
+			System.out.println("Error");
 		}
 		
 	}

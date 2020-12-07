@@ -1,4 +1,8 @@
+/Client/
+/GUI/
+/OCSF/
 /Server/
 /SqlConnector/
-/GUI/
-/Client/
+/common/
+/logic/
+/mysql-connector-java-8.0.13.jar
