@@ -120,7 +120,7 @@ public class EchoServer extends AbstractServer {
 				serverStopped();
 				break;
 			default:	
-				System.out.println("Sorryy, don't know what you pressed");
+				System.out.println("Sorryy, don't know what you presseds");
 			
 			}	
 		} catch(Exception e) {
